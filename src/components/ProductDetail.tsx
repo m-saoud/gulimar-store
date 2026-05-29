@@ -51,7 +51,7 @@ export default function ProductDetail({ product, onClose }: ProductDetailProps) 
 
   return (
     <div onClick={handleOverlayClick} className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fadeIn">
-      <div className="relative bg-white rounded-2xl max-w-md sm:max-w-2xl w-full max-h-[90vh] overflow-y-auto p-4 md:p-6 pt-10 md:pt-12 shadow-xl">
+      <div className="relative bg-white rounded-2xl max-w-md sm:max-w-2xl w-full max-h-[90vh] overflow-y-auto p-2 md:p-4 pt-6 md:pt-8 shadow-xl">
         <button 
           onClick={onClose} 
           className="absolute top-3 right-3 text-gray-700 hover:text-gray-900 bg-white rounded-full p-2 hover:bg-gray-100 shadow-md z-10 transition border border-gray-100" 
@@ -60,10 +60,9 @@ export default function ProductDetail({ product, onClose }: ProductDetailProps) 
           ✕
         </button>
         <div className="bg-white rounded-2xl overflow-hidden flex flex-col md:flex-row gap-4 md:gap-6">
-          {/* Image */}
-          <div className="flex-1 flex items-center justify-center bg-[#FAF9F5] p-3 md:p-4 rounded-xl min-h-[200px] md:min-h-[320px]">
+          <div className="flex-1 flex items-center justify-center w-full aspect-[4/5] overflow-hidden rounded-xl">
             {mounted && displayedImage ? (
-              <img src={displayedImage} alt={product.name} className="max-w-full max-h-[220px] md:max-h-[320px] object-contain rounded-lg" />
+              <img src={displayedImage} alt={product.name} className="w-full h-full object-cover" />
             ) : (
               <span className="text-5xl md:text-6xl">{product.icon}</span>
             )}
@@ -85,11 +84,7 @@ export default function ProductDetail({ product, onClose }: ProductDetailProps) 
                       <button 
                         key={size}
                         onClick={() => setSelectedSize(size)}
-                        className={`px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg border text-xs md:text-sm transition-all duration-200 ${
-                          selectedSize === size 
-                            ? 'bg-[#1A1A1B] text-[#F2C94C] border-[#1A1A1B] font-bold' 
-                            : 'bg-white text-gray-600 hover:bg-gray-50 border-gray-200'
-                        }`}
+                        className={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg border text-sm md:text-base transition-all duration-200 ${selectedSize === size ? 'bg-[#1A1A1B] text-[#F2C94C] border-[#1AA1B] font-bold' : 'bg-white text-gray-600 hover:bg-gray-50 border-gray-200'}`}
                       >
                         {size}
                       </button>
@@ -107,11 +102,7 @@ export default function ProductDetail({ product, onClose }: ProductDetailProps) 
                       <button 
                         key={color}
                         onClick={() => setSelectedColor(color)}
-                        className={`w-7 h-7 md:w-8 md:h-8 rounded-full border-2 transition-all duration-200 ${
-                          selectedColor === color 
-                            ? 'border-[#1A1A1B] ring-2 ring-[#F2C94C]/50 scale-110' 
-                            : 'border-gray-200 hover:border-gray-400'
-                        }`}
+                        className={`w-11 h-11 md:w-8 md:h-8 rounded-full border-2 transition-all duration-200 ${selectedColor === color ? 'border-[#1A1A1B] ring-2 ring-[#F2C94C]/50 scale-110' : 'border-gray-200 hover:border-gray-400'}`}
                         style={{ backgroundColor: color }}
                         title={COLOR_NAMES[color] || color}
                       />

@@ -12,7 +12,7 @@ export default function ProductCard({ product, onClick }: { product: Product; on
       }
     }} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col border border-[#F2C94C]/10 h-full">
       {/* Product Image Container */}
-      <div className="relative flex-1 flex items-center justify-center bg-[#FAF9F5] border-b border-[#F2C94C]/10 overflow-hidden">
+      <div className="relative flex-1 flex items-center justify-center border-b border-[#F2C94C]/10 overflow-hidden aspect-[3/4]">
         {/* Decorative background circles */}
         <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-[#F2C94C]/5" />
         <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-[#F2C94C]/5" />
@@ -22,7 +22,7 @@ export default function ProductCard({ product, onClick }: { product: Product; on
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-contain p-4 relative z-10 transition-transform duration-500 hover:scale-105"
+            className="w-full h-full object-cover rounded-t-2xl relative z-10 transition-transform duration-500 hover:scale-105"
           />
         ) : (
           <span className="text-6xl drop-shadow-lg select-none relative z-10">{product.icon}</span>
@@ -30,7 +30,7 @@ export default function ProductCard({ product, onClick }: { product: Product; on
         
         {/* Badge */}
         {product.badge && (
-          <span className="absolute top-3 right-3 bg-[#1A1A1A] text-[#F2C94C] text-xs font-bold px-2.5 py-1 rounded-full z-20 shadow-sm">
+          <span className="absolute top-2 right-2 bg-[#1A1A1B] text-[#F2C94C] text-xs font-bold px-2.5 py-1 rounded-full z-20 shadow-sm">
             {product.badge}
           </span>
         )}
@@ -41,7 +41,7 @@ export default function ProductCard({ product, onClick }: { product: Product; on
       </div>
 
       {/* Card Body */}
-      <div className="p-3 sm:p-4 flex flex-col gap-2.5 sm:gap-3">
+      <div className="p-2 sm:p-3 flex flex-col gap-2.5 sm:gap-3">
         {/* Name & Price */}
         <div className="flex flex-col gap-0.5 sm:gap-1">
           <h3 className="font-bold text-[#1A1A1A] text-xs sm:text-sm md:text-base leading-snug line-clamp-2 min-h-[2rem] sm:min-h-[2.5rem] flex items-center">
