@@ -46,7 +46,7 @@ export default function ProductPage() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
       <div className="relative bg-white rounded-2xl max-w-md sm:max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto p-4 pt-12 shadow-xl animate-fadeIn">
-        <button onClick={() => router.replace('/', { shallow: true })} className="absolute top-5 right-5 text-gray-700 hover:text-gray-900 bg-white rounded-full p-2 hover:bg-gray-100 shadow-md z-10 transition" aria-label="إغلاق">✕</button>
+        <button onClick={() => router.replace('/')} className="absolute top-5 right-5 text-gray-700 hover:text-gray-900 bg-white rounded-full p-2 hover:bg-gray-100 shadow-md z-10 transition" aria-label="إغلاق">✕</button>
         <nav className="flex items-center justify-between text-sm mb-4 pt-8">
           <Link href="/" className="text-[#F2C94C] hover:underline">الرئيسية</Link>
           <span className="mx-2">/</span>
