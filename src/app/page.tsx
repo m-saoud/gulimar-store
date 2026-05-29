@@ -3,12 +3,16 @@
 import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import ProductCard from '@/components/ProductCard';
+import ProductDetail from '@/components/ProductDetail';
 import { CATEGORIES, INITIAL_PRODUCTS, Product } from '@/lib/data';
+import { useCart } from '@/context/CartContext';
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState('الكل');
   const [products, setProducts] = useState<Product[]>([]);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
+  const { cartCount, setIsCartOpen } = useCart();
 
   useEffect(() => {
     setMounted(true);
@@ -27,6 +31,8 @@ export default function HomePage() {
   const filtered = activeCategory === 'الكل'
     ? products
     : products.filter(p => p.category === activeCategory);
+
+  const selectedProduct = products.find(p => p.id === selectedProductId);
 
   const categoryEmojis: Record<string, string> = {
     'الكل': '🌟',
@@ -150,12 +156,33 @@ export default function HomePage() {
                 className="animate-fadeIn h-full flex flex-col"
                 style={{ animationDelay: `${i * 0.07}s`, opacity: 0, animationFillMode: 'forwards' }}
               >
-                <ProductCard product={product} />
+                <ProductCard product={product} onClick={() => setSelectedProductId(product.id)} />
               </div>
             ))}
           </div>
         )}
       </main>
+
+      {/* Product Detail Modal */}
+      {selectedProduct && (
+        <ProductDetail product={selectedProduct} onClose={() => setSelectedProductId(null)} />
+      )}
+
+      {/* Floating Cart Button for Mobile (when cart is not empty) */}
+      {mounted && cartCount > 0 && (
+        <button
+          onClick={() => setIsCartOpen(true)}
+          className="sm:hidden fixed bottom-6 left-6 z-40 bg-[#1A1A1A] text-[#F2C94C] p-4 rounded-full shadow-2xl border border-[#F2C94C]/30 flex items-center justify-center transition-all active:scale-95"
+          aria-label="سلة المشتريات"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span className="absolute -top-1 -right-1 w-5.5 h-5.5 bg-[#F2C94C] text-[#1A1A1A] text-xs font-extrabold rounded-full flex items-center justify-center border-2 border-[#1A1A1A]">
+            {cartCount}
+          </span>
+        </button>
+      )}
 
       {/* Footer */}
       <footer className="bg-[#1A1A1A] text-white py-8 mt-8">

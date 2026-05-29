@@ -28,12 +28,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ar" dir="rtl" className={cairo.variable}>
+    <html lang="ar" dir="rtl" className={cairo.variable} suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
       </head>
-      <body className="min-h-screen flex flex-col" style={{ fontFamily: "'Cairo', sans-serif" }}>
+      <body className="min-h-screen flex flex-col" style={{ fontFamily: "'Cairo', sans-serif" }} suppressHydrationWarning>
         <CartProvider>
           {children}
         </CartProvider>

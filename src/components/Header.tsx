@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import CartDrawer from './CartDrawer';
+import Image from 'next/image';
 
 export default function Header() {
   const { cartCount, isCartOpen, setIsCartOpen } = useCart();
@@ -14,8 +15,14 @@ export default function Header() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <div className="w-9 h-9 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[#F2C94C] font-extrabold text-base shadow-md group-hover:scale-105 transition-transform">
-              ج
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-[#1A1A1A] flex items-center justify-center group-hover:scale-105 transition-transform">
+              <Image
+                src="/logo.png" 
+                alt="جوليمار طرطوس" 
+                width={40}
+                height={40}
+                className="object-contain" 
+              />
             </div>
             <div className="hidden sm:block leading-tight">
               <p className="font-extrabold text-[#1A1A1A] text-sm leading-none">جوليمار</p>

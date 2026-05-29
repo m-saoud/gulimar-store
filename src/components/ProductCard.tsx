@@ -3,9 +3,14 @@
 import Link from 'next/link';
 import { Product } from '@/lib/data';
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({ product, onClick }: { product: Product; onClick?: () => void }) {
   return (
-    <Link href={`/product/${product.id}`} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col border border-[#F2C94C]/10 h-full">
+    <Link href={`/product/${product.id}`} onClick={(e) => {
+      if (onClick) {
+        e.preventDefault();
+        onClick();
+      }
+    }} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col border border-[#F2C94C]/10 h-full">
       {/* Product Image Container */}
       <div className="relative flex-1 flex items-center justify-center bg-[#FAF9F5] border-b border-[#F2C94C]/10 overflow-hidden">
         {/* Decorative background circles */}
